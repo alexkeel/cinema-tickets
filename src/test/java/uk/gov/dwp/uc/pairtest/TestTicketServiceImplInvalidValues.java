@@ -3,7 +3,6 @@ package uk.gov.dwp.uc.pairtest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.mockito.Mockito;
 import thirdparty.paymentgateway.TicketPaymentService;
 import thirdparty.seatbooking.SeatReservationService;
 import uk.gov.dwp.uc.pairtest.domain.TicketTypeRequest;
@@ -15,7 +14,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 
 @RunWith(Parameterized.class)
-public class TicketServiceImplTestInvalidValues {
+public class TestTicketServiceImplInvalidValues {
     // Create a set of invalid tests to be
     @Parameterized.Parameters(name= "Invalid Data: {index}")
     public static Iterable<Object[]> data() {
@@ -31,13 +30,13 @@ public class TicketServiceImplTestInvalidValues {
     private final TicketTypeRequest invalidRequest;
     private final Long invalidAccountNo;
 
-    public TicketServiceImplTestInvalidValues(final TicketTypeRequest invalidRequest, final Long invalidAccountNo) {
+    public TestTicketServiceImplInvalidValues(final TicketTypeRequest invalidRequest, final Long invalidAccountNo) {
         this.invalidRequest = invalidRequest;
         this.invalidAccountNo = invalidAccountNo;
     }
 
     @Test (expected = InvalidPurchaseException.class)
-    public void purchaseTicketsTestInvalidTicketRequest() {
+    public void testPurchaseTicketsInvalidTicketRequest() {
         // Mock the external services
         final TicketPaymentService mockPaymentService = mock(TicketPaymentService.class);
         final SeatReservationService mockReservationService = mock(SeatReservationService.class);
@@ -48,7 +47,7 @@ public class TicketServiceImplTestInvalidValues {
     }
 
     @Test (expected = InvalidPurchaseException.class)
-    public void purchaseTicketsTestInvalidAccountId() {
+    public void testPurchaseTicketsInvalidAccountId() {
         // Mock the external services
         final TicketPaymentService mockPaymentService = mock(TicketPaymentService.class);
         final SeatReservationService mockReservationService = mock(SeatReservationService.class);
@@ -61,7 +60,7 @@ public class TicketServiceImplTestInvalidValues {
     }
 
     @Test (expected = InvalidPurchaseException.class)
-    public void purchaseTicketsTestNoAdult() {
+    public void testPurchaseTicketsTestNoAdult() {
         // Mock the external services
         final TicketPaymentService mockPaymentService = mock(TicketPaymentService.class);
         final SeatReservationService mockReservationService = mock(SeatReservationService.class);
@@ -75,7 +74,7 @@ public class TicketServiceImplTestInvalidValues {
     }
 
     @Test (expected = InvalidPurchaseException.class)
-    public void purchaseTicketsTestMoreInfantsThanAdults() {
+    public void testPurchaseTicketsMoreInfantsThanAdults() {
         // Mock the external services
         final TicketPaymentService mockPaymentService = mock(TicketPaymentService.class);
         final SeatReservationService mockReservationService = mock(SeatReservationService.class);
