@@ -13,7 +13,7 @@ import static org.mockito.Mockito.mock;
 
 @RunWith(Parameterized.class)
 public class TestTicketServiceImplInvalidValues {
-    // Create a set of invalid tests to be
+    // Create a set of invalid test data, items are { Ticket request, account number }
     @Parameterized.Parameters(name= "Invalid Data: {index}")
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][] {
