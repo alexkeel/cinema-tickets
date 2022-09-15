@@ -29,7 +29,10 @@ public class TicketServiceImpl implements TicketService {
     }
 
     /**
-     * Should only have private methods other than the one below.
+     * Handles purchasing of tickets
+     * @param accountId The account ID of the user
+     * @param ticketTypeRequests The list of ticket purchase requests
+     * @throws InvalidPurchaseException If the ticket purchase requests are invalid and cannot be processed
      */
     @Override
     public void purchaseTickets(Long accountId, TicketTypeRequest... ticketTypeRequests) throws InvalidPurchaseException {
@@ -44,7 +47,7 @@ public class TicketServiceImpl implements TicketService {
             throw new InvalidPurchaseException("The account ID " + accountId + " is invalid, must be greater than 0");
         }
         // Is there at least one adult ticket purchased?
-        if(Arrays.stream(ticketTypeRequests).filter(req -> req.getTicketType() == Type.ADULT).count() < 1)
+        if(Arrays.stream(ticketTypeRequests).noneMatch(req -> req.getTicketType() == Type.ADULT))
         {
             throw new InvalidPurchaseException("No adult ticket purchased");
         }
