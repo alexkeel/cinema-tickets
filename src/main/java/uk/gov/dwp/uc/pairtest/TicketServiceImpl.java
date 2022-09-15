@@ -44,7 +44,7 @@ public class TicketServiceImpl implements TicketService {
             throw new InvalidPurchaseException("The account ID " + accountId + " is invalid, must be greater than 0");
         }
         // Is there at least one adult ticket purchased?
-        if(Arrays.stream(ticketTypeRequests).filter(req -> req.getTicketType() == Type.ADULT).collect(Collectors.toList()).size() < 1)
+        if(Arrays.stream(ticketTypeRequests).filter(req -> req.getTicketType() == Type.ADULT).count() < 1)
         {
             throw new InvalidPurchaseException("No adult ticket purchased");
         }
